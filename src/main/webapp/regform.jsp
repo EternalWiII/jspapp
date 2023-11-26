@@ -4,7 +4,7 @@
 <%@page import="com.mycompany.jspapp.Student"%>
 
 <!DOCTYPE html>
-<html>
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
@@ -58,7 +58,7 @@
         </style>
     </head>
     
-    <body>
+    
         <h1>Servlet</h1>
         <form method = "post" action="StudentAdd">
         <table>
@@ -87,9 +87,9 @@
         </table>
         <input type="submit" name="send" value="Send">
         </form>
-   
-    <% List<Student> students = (List<Student>)application.getAttribute("students"); %>
-    <c:if test="${students.size() > 0}">
+
+        <% List<Student> students = (List<Student>)application.getAttribute("students"); %>
+        <c:if test="${students.size() > 0}">
         <table class = "custom-table">
             <tr>
                 <th> Name </th>
@@ -98,6 +98,7 @@
                 <th> Group </th>
                 <th> Faculty </th>
             </tr>
+            
             <c:forEach var = "student" items="${students}">
                 <tr>
                     <td> <c:out value="${student.getName()}" /> </td>
@@ -108,7 +109,7 @@
                 </tr>
             </c:forEach>    
         </table>
-    </c:if>
+        </c:if>
     
-    </body>
-</html>
+    
+
