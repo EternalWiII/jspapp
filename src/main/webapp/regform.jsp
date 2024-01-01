@@ -106,6 +106,9 @@
                     <td> <c:out value="${student.getEmail()}" /> </td>
                     <td> <c:out value="${student.getGroup()}" /> </td>
                     <td> <c:out value="${student.getFaculty()}" /> </td>
+                    <td>
+                        <a href="/jspapp/MarksCheck?id2=${student.getId()}">scores</a>
+                    </td>
                 </tr>
             </c:forEach>    
         </table>

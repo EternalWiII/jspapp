@@ -20,12 +20,15 @@ import javax.servlet.http.HttpSession;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 @WebServlet(name = "StudentAdd", urlPatterns = {"/StudentAdd"})
 public class StudentAdd extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        ApplicationContext factory = new ClassPathXmlApplicationContext("/spring.xml");
         HttpSession session = request.getSession();
         List<Student> students;
         PrintWriter pw = null;
@@ -57,8 +60,15 @@ public class StudentAdd extends HttpServlet {
             Statement s = (Statement) conn.createStatement();
             ResultSet rs = s.executeQuery("SELECT * FROM Student");
             students = new LinkedList<Student>();
+            Student student =null;
             while(rs.next()){
-                Student student = new Student(rs.getString(2),rs.getString(3), rs.getString(4),rs.getString(5),rs.getString(6));
+                student = (Student)factory.getBean("student");
+                student.setId(rs.getInt(1));
+                student.setName(rs.getString(2));
+                student.setSurname(rs.getString(3));
+                student.setEmail(rs.getString(4));
+                student.setGroup(rs.getString(5));
+                student.setFaculty(rs.getString(6));
                 students.add(student);
             }
             session.setAttribute("students",students);

@@ -8,6 +8,16 @@
         <servlet-name>StudentAdd</servlet-name>
         <url-pattern>/StudentAdd</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>MarksCheck</servlet-name>
+        <servlet-class>com.mycompany.jspapp.MarksCheck</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MarksCheck</servlet-name>
+        <url-pattern>/MarksCheck</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30
