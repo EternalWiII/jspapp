@@ -1,4 +1,6 @@
+com\mycompany\jspapp\StudentDAO.class
+com\mycompany\jspapp\ContentController.class
 com\mycompany\jspapp\StudentController.class
 com\mycompany\jspapp\Student.class
-com\mycompany\jspapp\ContentController.class
+com\mycompany\jspapp\ContentDAO.class
 com\mycompany\jspapp\Mark.class

@@ -1,10 +1,27 @@
 package com.mycompany.jspapp;
 
-public class Mark {
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="marks")
+public class Mark implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="markid")
     int markid;
+    @Column(name="studentid")
     int studentID;
+    @Column(name="title")
     String title;
+    @Column(name="mark_let")
     String mark_let;
+    @Column(name="mark_num")
     int mark_num;
 
     public Mark() {}

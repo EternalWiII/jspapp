@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:tx="http://www.springframework.org/schema/tx"
+             xmlns:ctx="http://www.springframework.org/schema/context"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+                                 http://www.springframework.org/schema/beans/spring-beans.xsd
+                                 http://www.springframework.org/schema/context
+                                 http://www.springframework.org/schema/context/spring-context-4.2.xsd
+                                 http://www.springframework.org/schema/tx
+                                 http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+                                 http://www.springframework.org/schema/tx">
+
+    <ctx:component-scan base-package="com.mycompany.jspapp"></ctx:component-scan>
+
+    <tx:annotation-driven transaction-manager="myTransactionManager" />
+
+    <beans:bean id="myTransactionManager"
+                class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <beans:property name="sessionFactory" ref="sessionFactory" />
+    </beans:bean>
+
+    <beans:bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <beans:property name="dataSource" ref="myDataSource" />
+        <beans:property name="packagesToScan" value="com.mycompany.jspapp" />
+        <beans:property name="hibernateProperties">
+            <beans:props>
+                <beans:prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</beans:prop>
+                <beans:prop key="hibernate.show_sql">true</beans:prop>
+            </beans:props>
+        </beans:property>
+    </beans:bean>
+
+    <beans:bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <beans:property name="driverClass" value="org.postgresql.Driver"></beans:property>
+        <beans:property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/jbdc_test"></beans:property>
+        <beans:property name="user" value="postgres"></beans:property>
+        <beans:property name="password" value="12345"></beans:property>
+    </beans:bean>
+
+</beans:beans>

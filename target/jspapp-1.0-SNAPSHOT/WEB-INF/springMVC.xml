@@ -20,5 +20,7 @@
 		<beans:property name="prefix" value="/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
+        
+        <import resource="db-config.xml"/>,
 
 </beans:beans>
